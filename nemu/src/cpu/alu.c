@@ -7,23 +7,31 @@ void set_CF_add(uint32_t result, uint32_t src, size_t data_size)
 	cpu.eflags.CF = result < src;
 }
 
-void set_PF(uint32_t result){
-
+void set_PF(uint32_t result)
+{
+	uint8_t last8_bit = (result >> 8) << 8;
+	uint8_t temp = 0;
+	for (int i = 0; i < 8; i++)
+	{
+		temp ^= (last8_bit >> i) ^ ((last8_bit >> (i + 1)) << 1);
+	}
+	if (temp)
+		cpu.eflags.PF = 0;
+	else
+		cpu.eflags.PF = 1;
 }
 
 void set_ZF(uint32_t result, size_t data_size)
 {
-
+	
 }
-
 
 void set_SF(uint32_t result, size_t data_size)
 {
-
 }
 
-void set_OF(uint32_t result, uint32_t src, uint32_t dest, size_t data_size){
-
+void set_OF(uint32_t result, uint32_t src, uint32_t dest, size_t data_size)
+{
 }
 
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
