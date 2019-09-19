@@ -353,6 +353,22 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 
 	cpu.eflags.CF = 0;
 	dest = dest & ((0xffffffff) >> (32 - data_size));
+	if (src==1)
+	{
+		switch (data_size)
+		{
+		case 8:
+			cpu.eflags.OF = ((dest & 0x80) == 0x80);
+			break;
+		case 16:
+			cpu.eflags.OF = ((dest & 0x8000) == 0x8000);
+			break;
+		default:
+			cpu.eflags.OF = ((dest & 0x80000000) == 0x80000000);
+			break;
+		}
+	}
+	
 	while (src > 0)
 	{
 		switch (data_size)
