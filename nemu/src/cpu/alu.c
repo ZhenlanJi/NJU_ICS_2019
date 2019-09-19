@@ -425,7 +425,7 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 	// 	assert(0);
 	// 	return 0;
 	// #endif
-	
+	printf("dest: %u, src: %u, datasize: %u\n", dest, src, data_size);
 	cpu.eflags.CF = 0;
 	//dest = dest & ((0xffffffff) >> (32 - data_size));
 	bool nega = ((dest >> (data_size - 1) & 1) == 1);
@@ -441,6 +441,7 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 	set_PF(dest);
 	set_ZF(dest, data_size);
 	set_SF(dest, data_size);
+	printf("dest: %u\n", dest);
 	return dest & ((0xffffffff) >> (32 - data_size));
 }
 
