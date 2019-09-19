@@ -135,7 +135,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	uint32_t temp_src = (~src);
 	temp_src = alu_add(1, temp_src, data_size);
 	uint32_t res = alu_add(temp_src, dest, data_size);
-	cpu.eflags.CF = ~(cpu.eflags.CF);
+	cpu.eflags.CF = (cpu.eflags.CF)^1;
 	return res;
 }
 
