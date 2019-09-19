@@ -363,9 +363,10 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 			cpu.eflags.CF=(dest==0x80);
 			break;
 		case 16:
-			
+			cpu.eflags.CF=(dest==0x8000);
+			break;
 		default:
-			exit(1);
+			
 		}
 	}
 }
