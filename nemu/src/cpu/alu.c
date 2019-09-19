@@ -35,7 +35,22 @@ void set_SF(uint32_t result, size_t data_size)
 
 void set_OF(uint32_t result, uint32_t src, uint32_t dest, size_t data_size)
 {
-
+	switch (data_size)
+	{
+	case 8:
+		result=sign_ext(result&0xFF,8);
+		src=sign_ext(src&0xFF,8);
+		dest=sign_ext(dest&0xFF,8);
+		break;
+	case 16:
+		result=sign_ext(result&0xFF,16);
+		src=sign_ext(src&0xFF,16);
+		dest=sign_ext(dest&0xFF,16);
+		break;
+	
+	default:
+		break;
+	}
 }
 
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
