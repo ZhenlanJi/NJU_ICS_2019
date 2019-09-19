@@ -113,6 +113,7 @@ uint32_t alu_adc(uint32_t src, uint32_t dest, size_t data_size)
 	uint32_t res = 0;
 	res = dest + src + cpu.eflas.CF;
 
+	set_CF_adc(res, src, data_size, cpu.eflags.CF);
 	set_PF(res);
 	set_ZF(res, data_size);
 	set_SF(res, data_size);
