@@ -55,7 +55,7 @@ void set_OF(uint32_t result, uint32_t src, uint32_t dest, size_t data_size)
 		if (sign(src) != sign(result))
 			cpu.eflags.OF = 1;
 		else
-			cpu.eflags.OF = 0
+			cpu.eflags.OF = 0;
 	}
 	else
 		cpu.eflags.OF = 0;
