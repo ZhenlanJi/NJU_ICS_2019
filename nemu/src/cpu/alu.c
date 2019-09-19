@@ -350,9 +350,7 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 	// 	assert(0);
 	// 	return 0;
 	// #endif
-	set_PF(res);
-	set_ZF(res, data_size);
-	set_SF(res, data_size);
+	
 	cpu.eflags.CF = 0;
 	dest = dest & ((0xffffffff) >> (32 - data_size));
 	while (src > 0)
@@ -372,6 +370,9 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 		dest=dest<<1;
 		--src;
 	}
+	set_PF(dest);
+	set_ZF(dest, data_size);
+	set_SF(dest, data_size);
 	return dest;
 }
 
