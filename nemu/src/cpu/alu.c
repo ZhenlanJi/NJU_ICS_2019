@@ -204,7 +204,8 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size)
 // 	assert(0);
 // 	return 0;
 // #endif
-
+	uint64_t res = (uint64_t)src*(uint64_t)dest;
+	uint64_t temp=res>>
 }
 
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size)
