@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cpu.h": "c",
-        "alu.h": "c"
+        "alu.h": "c",
+        "functional": "c"
     }
 }
