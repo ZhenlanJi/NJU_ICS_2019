@@ -9,7 +9,7 @@ void set_CF_add(uint32_t result, uint32_t src, size_t data_size)
 
 void set_PF(uint32_t result)
 {
-	uint8_t last8_bit = (result >> 8) << 8;
+	uint8_t last8_bit = result;
 	uint8_t temp = 0;
 	for (int i = 0; i < 8; i++)
 	{
