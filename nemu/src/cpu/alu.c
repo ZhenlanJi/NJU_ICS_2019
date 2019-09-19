@@ -425,6 +425,7 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 	// 	assert(0);
 	// 	return 0;
 	// #endif
+	
 	cpu.eflags.CF = 0;
 	//dest = dest & ((0xffffffff) >> (32 - data_size));
 	bool nega = ((dest >> (data_size - 1) & 1) == 1);
