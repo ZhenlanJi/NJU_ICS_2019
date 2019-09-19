@@ -403,6 +403,16 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 	// #endif
 	cpu.eflags.CF = 0;
 	dest = dest & ((0xffffffff) >> (32 - data_size));
+	while (src>0)
+	{
+		cpu.eflags.CF=((dest&1)==1)
+		dest=dest>>1;
+		--src;
+	}
+	set_PF(dest);
+	set_ZF(dest, data_size);
+	set_SF(dest, data_size);
+	return dest & ((0xffffffff) >> (32 - data_size));
 }
 
 uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
