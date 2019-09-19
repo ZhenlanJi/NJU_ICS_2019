@@ -434,10 +434,10 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 	{
 		cpu.eflags.CF = ((dest & 1) == 1);
 		dest = dest >> 1;
+		if (nega)
+			dest = dest | (0x80000000 >> (32 - data_size));
 		--src;
 	}
-	if (nega)
-		dest = dest | (0x80000000 >> (32 - data_size));
 	set_PF(dest);
 	set_ZF(dest, data_size);
 	set_SF(dest, data_size);
