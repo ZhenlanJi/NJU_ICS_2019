@@ -132,7 +132,8 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	// 	return 0;
 	// #endif
 	uint32_t res = 0;
-	res = dest - src;
+	src = ~src + 1;
+	res = dest + src;
 
 	set_CF_add(res, src, data_size);
 	set_PF(res);
@@ -140,7 +141,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	set_SF(res, data_size);
 	set_OF_add(res, src, dest, data_size);
 
-	cpu.eflags.CF^=0x00000001;
+	//cpu.eflags.CF ^= 0x00000001;
 
 	return res & (0xFFFFFFFF >> (32 - data_size));
 }
