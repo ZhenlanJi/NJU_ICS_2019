@@ -290,7 +290,7 @@ uint32_t alu_and(uint32_t src, uint32_t dest, size_t data_size)
 	// 	assert(0);
 	// 	return 0;
 	// #endif
-	uint32_t res = uint32_t res = 0;
+	uint32_t res = 0;
 	res = dest & src;
 
 	set_PF(res);
