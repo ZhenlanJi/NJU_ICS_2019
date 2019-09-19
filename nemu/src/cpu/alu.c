@@ -343,13 +343,14 @@ uint32_t alu_or(uint32_t src, uint32_t dest, size_t data_size)
 
 uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 {
-#ifdef NEMU_REF_ALU
-	return __ref_alu_shl(src, dest, data_size);
-#else
-	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
-	assert(0);
-	return 0;
-#endif
+	// #ifdef NEMU_REF_ALU
+	// 	return __ref_alu_shl(src, dest, data_size);
+	// #else
+	// 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
+	// 	assert(0);
+	// 	return 0;
+	// #endif
+	
 }
 
 uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
