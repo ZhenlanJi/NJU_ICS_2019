@@ -372,6 +372,7 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 		dest=dest<<1;
 		--src;
 	}
+	return dest;
 }
 
 uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
