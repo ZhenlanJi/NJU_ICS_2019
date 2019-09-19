@@ -131,8 +131,8 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	// 	assert(0);
 	// 	return 0;
 	// #endif
-	src = src & (0xFFFFFFFF >> (32 - data_size));
 	uint32_t temp_src = (~src) + (uint32_t)1;
+	src = src & (0xFFFFFFFF >> (32 - data_size));
 	return alu_add(temp_src, dest, data_size);
 }
 
