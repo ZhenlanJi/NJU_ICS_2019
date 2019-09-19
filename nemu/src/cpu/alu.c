@@ -131,7 +131,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	// 	assert(0);
 	// 	return 0;
 	// #endif
-	printf("src: %ld, dst:%ld \n".src,dest);
+	printf("src: %ld, dst:%ld \n",src,dest);
 	src = src & (0xFFFFFFFF >> (32 - data_size));
 	uint32_t temp_src = (~src);
 	temp_src = alu_add(1, temp_src, data_size);
