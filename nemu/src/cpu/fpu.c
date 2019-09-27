@@ -79,8 +79,12 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	if (!overflow)
 	{
 		/* TODO: round up and remove the GRS bits */
-		printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-		assert(0);
+		uint32_t grs = sig_grs & 0x7;
+		sig_grs = sig_grs >> 3;
+		if (grs > 4 || (grs == 4 && ((sig_grs & 0x1) == 1)))
+		{
+			++sig_grs;
+		}
 	}
 
 	FLOAT f;
