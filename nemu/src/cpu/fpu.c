@@ -87,6 +87,10 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		}
 		if((sig_grs>>24)>=1)
 		{
+			if (exp)
+			{
+				/* code */
+			}
 			
 		}
 	}
