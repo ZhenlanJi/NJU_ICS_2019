@@ -22,8 +22,10 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		{
 
 			/* TODO: shift right, pay attention to sticky bit*/
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+			uint16_t sticky = sig_grs & 0x1;
+			sig_grs = sig_grs >> 1;
+			sig_grs = sig_grs | sticky;
+			++exp;
 		}
 
 		if (exp >= 0xff)
