@@ -295,8 +295,9 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a)
 	uint32_t exp_res = 0;
 
 	/* TODO: exp_res = ? leave space for GRS bits. */
-	printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-	assert(0);
+	sig_res = sig_res << 3;
+	exp_res = ((fb.exponent == 0) ? -126 : fb.exponent - 127) + ((fa.exponent == 0) ? -126 : fa.exponent - 127) + 127 - 20;
+
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
 
