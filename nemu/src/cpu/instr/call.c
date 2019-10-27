@@ -12,7 +12,15 @@ make_instr_func(call_near)
     rel.addr = eip + 1;
     operand_read(&rel);
     int offset = sign_ext(rel.val, data_size);
-   
+
+    cpu.eip-=dest_size;
+    
+    OPERAND temp_dest;
+    temp_dest.addr = cpu.esp;
+    temp_dest.sreg = SREG_SS;
+    temp_dest.data_size = data_size;
+    temp_dest.type = OPR_MEM;
+    temp_dest.val = sign_ext(opr_src.val, data_size);
 
     cpu.eip += offset;
 
