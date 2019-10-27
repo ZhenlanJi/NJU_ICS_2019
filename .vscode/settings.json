@@ -4,6 +4,7 @@
         "alu.h": "c",
         "functional": "c",
         "instr.h": "c",
-        "jmp.h": "c"
+        "jmp.h": "c",
+        "cmp.h": "c"
     }
 }
