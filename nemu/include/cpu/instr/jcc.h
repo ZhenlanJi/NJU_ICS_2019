@@ -1,7 +1,7 @@
 #ifndef __INSTR_JCC_H__
 #define __INSTR_JCC_H__
 
-#define jcc_helper(suffix) \
+#define jcc_make_instr_func(suffix) \
 	make_instr_func(j, i, suffix, e) \
 	make_instr_func(j, i, suffix, a) \
 	make_instr_func(j, i, suffix, b) \
@@ -19,7 +19,7 @@
 	make_instr_func(j, i, suffix, np) \
 	make_instr_func(j, i, suffix, ns) \
 
-jcc_helper(near)
-jcc_helper(short_)
+jcc_make_instr_func(near)
+jcc_make_instr_func(short_)
 
 #endif
