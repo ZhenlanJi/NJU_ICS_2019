@@ -8,6 +8,7 @@
         "cmp.h": "c",
         "push.h": "c",
         "call.h": "c",
-        "test.h": "c"
+        "test.h": "c",
+        "jcc.h": "c"
     }
 }
