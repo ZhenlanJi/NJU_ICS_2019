@@ -6,6 +6,7 @@
         "instr.h": "c",
         "jmp.h": "c",
         "cmp.h": "c",
-        "push.h": "c"
+        "push.h": "c",
+        "call.h": "c"
     }
 }
