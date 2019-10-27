@@ -7,13 +7,13 @@ make_instr_func(call_near)
 
     OPERAND rel;
     rel.type = OPR_IMM;
-    rel.sreg = SREG_S;
+    rel.sreg = SREG_DS;
     rel.data_size = data_size;
     rel.addr = eip + 1;
     operand_read(&rel);
     int offset = sign_ext(rel.val, data_size);
 
-    cpu.eip -= dest_size;
+    cpu.esp -= dest_size;
 
     OPERAND temp_dest;
     temp_dest.addr = cpu.esp;
