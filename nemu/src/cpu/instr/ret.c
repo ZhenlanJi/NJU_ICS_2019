@@ -11,4 +11,6 @@ make_instr_func(ret_near)
     operand_read(&stack_mem);
     cpu.esp+=data_size/8;
     cpu.eip=stack_mem.val;
+
+    return 0;
 }
