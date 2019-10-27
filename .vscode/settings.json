@@ -3,6 +3,7 @@
         "cpu.h": "c",
         "alu.h": "c",
         "functional": "c",
-        "instr.h": "c"
+        "instr.h": "c",
+        "jmp.h": "c"
     }
 }
