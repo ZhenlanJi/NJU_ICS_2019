@@ -9,10 +9,7 @@ static void instr_execute_2op()
     cpu.eflags.OF = 0;
 }
 
-make_instr_impl_2op(cmp, i, rm, b)
-make_instr_impl_2op(cmp, i, rm, v)
-make_instr_impl_2op(cmp, i, rm, bv)
-make_instr_impl_2op(cmp, r, rm, b)
-make_instr_impl_2op(cmp, r, rm, v)
-make_instr_impl_2op(cmp, rm, r, b)
-make_instr_impl_2op(cmp, rm, r, v)
+make_instr_impl_2op(test, i, rm, b)
+make_instr_impl_2op(test, i, rm, v)
+make_instr_impl_2op(test, r, rm, b)
+make_instr_impl_2op(test, r, rm, v)
