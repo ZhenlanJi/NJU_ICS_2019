@@ -21,6 +21,6 @@
 
 jcc_make_instr_func(near)
 jcc_make_instr_func(short_)
-make_instr_func(jecxz_short_)
+make_instr_func(jecxz_short_);
 
 #endif
