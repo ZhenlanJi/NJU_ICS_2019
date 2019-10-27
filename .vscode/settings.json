@@ -5,6 +5,7 @@
         "functional": "c",
         "instr.h": "c",
         "jmp.h": "c",
-        "cmp.h": "c"
+        "cmp.h": "c",
+        "push.h": "c"
     }
 }
