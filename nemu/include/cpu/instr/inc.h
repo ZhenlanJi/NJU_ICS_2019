@@ -1,6 +1,6 @@
 #ifndef __INSTR_INC_H__
 #define __INSTR_INC_H__
 
-
+make_instr_func();
 
 #endif

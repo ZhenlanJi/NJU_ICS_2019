@@ -9,6 +9,8 @@
         "push.h": "c",
         "call.h": "c",
         "test.h": "c",
-        "jcc.h": "c"
+        "jcc.h": "c",
+        "lea.h": "c",
+        "inc.h": "c"
     }
 }
