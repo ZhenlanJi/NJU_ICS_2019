@@ -11,6 +11,7 @@
         "test.h": "c",
         "jcc.h": "c",
         "lea.h": "c",
-        "inc.h": "c"
+        "inc.h": "c",
+        "and.h": "c"
     }
 }
