@@ -12,6 +12,7 @@
         "jcc.h": "c",
         "lea.h": "c",
         "inc.h": "c",
-        "and.h": "c"
+        "and.h": "c",
+        "xor.h": "c"
     }
 }
