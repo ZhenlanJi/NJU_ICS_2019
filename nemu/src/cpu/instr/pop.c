@@ -5,6 +5,7 @@ static void instr_execute_1op()
     OPERAND opr_obj;
     int writing_size=data_size/8;
     assert(writing_size==1||writing_size==2||writing_size==4);
+    opr_obj.data_size=data_size;
     opr_obj.addr=cpu.esp;
     opr_obj.sreg=SREG_SS;
     opr_obj.type=OPR_MEM;
