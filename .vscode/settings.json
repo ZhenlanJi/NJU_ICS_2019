@@ -13,6 +13,7 @@
         "lea.h": "c",
         "inc.h": "c",
         "and.h": "c",
-        "xor.h": "c"
+        "xor.h": "c",
+        "leave.h": "c"
     }
 }
