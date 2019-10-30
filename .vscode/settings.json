@@ -16,6 +16,7 @@
         "xor.h": "c",
         "leave.h": "c",
         "not.h": "c",
-        "imul.h": "c"
+        "imul.h": "c",
+        "cmps.h": "c"
     }
 }
