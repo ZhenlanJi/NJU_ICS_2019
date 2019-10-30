@@ -9,17 +9,29 @@ void set_CF_add(uint32_t result, uint32_t src, size_t data_size)
 
 void set_CF_adc(uint32_t result, uint32_t src, size_t data_size, bool CF)
 {
-	if (CF)
+	// if (CF)
+	// {
+	// 	result = sign_ext(result & (0xFFFFFFFF >> (32 - data_size)), data_size);
+	// 	src = sign_ext(src & (0xFFFFFFFF >> (32 - data_size)), data_size);
+	// 	cpu.eflags.CF = result <= src;
+	// }
+	// else
+	// {
+	// 	result = sign_ext(result & (0xFFFFFFFF >> (32 - data_size)), data_size);
+	// 	src = sign_ext(src & (0xFFFFFFFF >> (32 - data_size)), data_size);
+	// 	cpu.eflags.CF = result < src;
+	// }
+	result = sign_ext(result & (0xFFFFFFFF >> (32 - data_size)), data_size);
+	src = sign_ext(src & (0xFFFFFFFF >> (32 - data_size)), data_size);
+	if (CF==1)
 	{
-		result = sign_ext(result & (0xFFFFFFFF >> (32 - data_size)), data_size);
-		src = sign_ext(src & (0xFFFFFFFF >> (32 - data_size)), data_size);
-		cpu.eflags.CF = result <= src;
-	}
-	else
-	{
-		result = sign_ext(result & (0xFFFFFFFF >> (32 - data_size)), data_size);
-		src = sign_ext(src & (0xFFFFFFFF >> (32 - data_size)), data_size);
-		cpu.eflags.CF = result < src;
+		if(src>=result)
+			cpu.eflags.CF = 1;
+		else
+		{
+			cpu.eflags.CF = 0;
+		}
+		
 	}
 }
 
