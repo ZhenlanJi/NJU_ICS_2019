@@ -43,6 +43,7 @@ extern uint8_t data_size;
 #include "cpu/instr/sbb.h"
 #include "cpu/instr/imul.h"
 #include "cpu/instr/idiv.h"
+#include "cpu/instr/mul.h"
 
 /* TODO: add more instructions here */
 
