@@ -37,3 +37,8 @@ make_instr_func(jmp_short)
 
         return 2;
 }
+
+make_instr_func(jmp_near_indirect)
+{
+        
+}
