@@ -40,5 +40,13 @@ make_instr_func(jmp_short)
 
 make_instr_func(jmp_near_indirect)
 {
-        
+        OPERAND rel;
+        rel.data_size = data_size;
+        int len = 1;
+        len += modrm_rm(cpu.eip + 1, &rel);
+        operand_read(&rel);
+
+        int offset = sign_ext(rel.val, data_size);
+        cpu.eip = offset;
+        return 0;
 }
