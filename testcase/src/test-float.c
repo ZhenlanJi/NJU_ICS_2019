@@ -22,7 +22,6 @@ int main()
 		HIT_BAD_TRAP;
 
 	c = a - b;
-	BREAK_POINT;
 	if (c == 0.2) // this will fail, and also fails for native program, interesting, can be used as a quiz
 		;
 	else
