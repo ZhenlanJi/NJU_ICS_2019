@@ -28,8 +28,13 @@ make_instr_func(call_near)
     return 1 + dest_size;
 }
 
-
 make_instr_func(call_near_indirect)
 {
+    OPERAND rel;
+    rel.sreg = SREG_DS;
+    rel.data_size = data_size;
+    int tem = modrm_rm(eip + 1, &rel);
+    operand_read(&rel);
+    
     
 }
