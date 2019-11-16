@@ -44,7 +44,7 @@ uint32_t loader()
 			memcpy((void*)ph->p_vaddr,(void*)ph->p_offset,(size_t)ph->p_filesz);
 
 /* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
-			memset((void*)(ph->p_vaddr+ph->))
+			memset((void*)(ph->p_vaddr+ph->p_offset),0x0,(size_t)ph->p_filesz);
 #ifdef IA32_PAGE
 			/* Record the program break for future use */
 			extern uint32_t brk;
