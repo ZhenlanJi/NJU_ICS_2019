@@ -27,3 +27,9 @@ make_instr_func(call_near)
 
     return 1 + dest_size;
 }
+
+
+make_instr_func(call_near_indirect)
+{
+    
+}
