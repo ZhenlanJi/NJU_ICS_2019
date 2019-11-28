@@ -1,6 +1,6 @@
 #include "memory/memory.h"
 #include "memory/cache.h"
-#include<stdlib.h>
+#include <stdlib.h>
 
 CacheLine CACHE[CACHE_LINE_NUM]; //1024
 
@@ -30,7 +30,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache)
                 }
                 else
                 {
-                    uint32_t head, tail;
+                    uint32_t head = 0, tail = 0;
                     memcpy(&tail, &cache[cache_row].data[pRead.blockAddr], 64 - pRead.blockAddr);
                     head = cache_read(paddr + 64 - pRead.blockAddr, len - 64 + pRead.blockAddr, cache) << (8 * (64 - pRead.blockAddr));
                     ret = head | tail;
