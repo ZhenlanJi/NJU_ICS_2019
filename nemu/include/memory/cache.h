@@ -23,7 +23,7 @@ typedef struct paddrReadStru
         uint32_t blockAddr:6;
     };
     uint32_t val;
-}
+}paddrRead;
 
 void init_cache();
 
