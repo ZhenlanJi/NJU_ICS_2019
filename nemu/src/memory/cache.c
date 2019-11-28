@@ -42,7 +42,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache)
     cache_row += rand() % 8;
     cache[cache_row].valid_bit = true;
     cache[cache_row].mark = pRead.mark;
-    memcpy(cache[cache_row].data, hw_mem + paddr - pRead.blockAddr, CACHE_BLOCK_SIZE);
+    memcpy(&(cache[cache_row].data), hw_mem + paddr - pRead.blockAddr, CACHE_BLOCK_SIZE);
     memcpy(&ret, hw_mem + paddr, len);
     return ret;
 }
@@ -62,7 +62,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine *cache)
             {
                 if (pRead.blockAddr + 8 * len < 512)
                 {
-                    memcpy(&cache[cache_row].data[pRead.blockAddr], &data, len);
+                    memcpy(&(cache[cache_row].data[pRead.blockAddr]), &data, len);
                     memcpy(hw_mem + paddr, &data, len);
                 }
                 else
@@ -80,5 +80,5 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine *cache)
     cache_row += rand() % 8;
     cache[cache_row].valid_bit = true;
     cache[cache_row].mark = pRead.mark;
-    memcpy(cache[cache_row].data, hw_mem + paddr - pRead.blockAddr, CACHE_BLOCK_SIZE);
+    memcpy(&(cache[cache_row].data), hw_mem + paddr - pRead.blockAddr, CACHE_BLOCK_SIZE);
 }
