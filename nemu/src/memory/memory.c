@@ -4,6 +4,7 @@
 #include "device/mm_io.h"
 #include <memory.h>
 #include <stdio.h>
+#include "memory/cache.h"
 
 uint8_t hw_mem[MEM_SIZE_B];
 
@@ -23,7 +24,7 @@ uint32_t paddr_read(paddr_t paddr, size_t len)
 {
 	uint32_t ret = 0;
 #ifdef CACHE_ENABLED
-	ret= cache_read(paddr, len, CACHE);
+	ret = cache_read(paddr, len, CACHE);
 #else
 	ret = hw_mem_read(paddr, len);
 #endif
