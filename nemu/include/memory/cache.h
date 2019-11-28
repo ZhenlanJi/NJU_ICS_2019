@@ -7,7 +7,7 @@
 // 2^10/2^3=2^q q=7
 // 32-6-7=19 t=19
 
-struct cacheLineStru
+typedef struct cacheLineStru
 {
     bool valid_bit; //1
     uint32_t mark;  //19
