@@ -3,9 +3,6 @@
 #define CACHE_LINE_NUM 1024
 #define CACHE_BLOCK_SIZE 64
 
-// 64=2^b b=6
-// 2^10/2^3=2^q q=7
-// 32-6-7=19 t=19
 
 typedef struct cacheLineStru
 {
@@ -13,6 +10,20 @@ typedef struct cacheLineStru
     uint32_t mark;  //19
     uint8_t data[CACHE_BLOCK_SIZE];
 }CacheLine;
+
+// 64=2^b b=6  blockAddr
+// 2^10/2^3=2^q q=7 grp_no
+// 32-6-7=19 t=19  mark
+typedef struct paddrReadStru
+{
+    struct 
+    {
+        uint32_t mark:19;
+        uint32_t grpNo: 7;
+        uint32_t blockAddr:6;
+    };
+    uint32_t val;
+}
 
 void init_cache();
 
