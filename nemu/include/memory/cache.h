@@ -12,7 +12,7 @@ struct cacheLineStru
     bool valid_bit; //1
     uint32_t mark;  //19
     uint8_t data[CACHE_BLOCK_SIZE];
-} CacheLine;
+}CacheLine;
 
 void init_cache();
 
