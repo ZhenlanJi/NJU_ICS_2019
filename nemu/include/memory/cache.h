@@ -25,6 +25,8 @@ typedef struct paddr2CacheStru
     uint32_t val;
 }paddr2Cache;
 
+extern CacheLine CACHE[];
+
 void init_cache();
 
 uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache);
