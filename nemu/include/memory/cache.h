@@ -2,7 +2,7 @@
 
 #define CACHE_LINE_NUM 1024
 #define CACHE_BLOCK_SIZE 64
-
+#define SET_ASSOCIATE 8
 
 typedef struct cacheLineStru
 {
