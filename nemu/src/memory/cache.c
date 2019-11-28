@@ -46,3 +46,39 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache)
     memcpy(&ret, hw_mem + paddr, len);
     return ret;
 }
+
+void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine *cache)
+{
+    paddr2Cache pRead;
+    pRead.val = paddr;
+
+    int cache_row = CACHE_SET_ASSOCIATE * pRead.grpNo;
+    for (int i = 0; i < CACHE_SET_ASSOCIATE; i++)
+    {
+        if (cache[cache_row + i].mark == pRead.mark)
+        {
+            cache_row += i;
+            if (cache[cache_row].valid_bit)
+            {
+                if (pRead.blockAddr + 8 * len < 512)
+                {
+                    memcpy(&cache[cache_row].data[pRead.blockAddr], &data, len);
+                    memcpy(hw_mem + paddr, &data, len);
+                }
+                else
+                {
+                    cache_write(paddr, 64 - pRead.blockAddr, data, cache);
+                    cache_write(paddr + 64 - pRead.blockAddr, len + 64 - pRead.blockAddr, data >> (8 * (64 - pRead.blockAddr)), cache);
+                    memcpy(hw_mem + paddr, &data, len);
+                }
+                break;
+            }
+        }
+    }
+    //fail need to write
+    memcpy(hw_mem + paddr, &data, len);
+    cache_row += rand() % 8;
+    cache[cache_row].valid_bit = true;
+    cache[cache_row].mark = pRead.mark;
+    memcpy(cache[cache_row].data, hw_mem + paddr - pRead.blockAddr, CACHE_BLOCK_SIZE);
+}
