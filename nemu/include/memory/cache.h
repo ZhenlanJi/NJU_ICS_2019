@@ -14,7 +14,7 @@ typedef struct cacheLineStru
 // 64=2^b b=6  blockAddr
 // 2^10/2^3=2^q q=7 grp_no
 // 32-6-7=19 t=19  mark
-typedef struct paddrReadStru
+typedef struct paddr2CacheStru
 {
     struct 
     {
@@ -23,7 +23,7 @@ typedef struct paddrReadStru
         uint32_t blockAddr:6;
     };
     uint32_t val;
-}paddrRead;
+}paddr2Cache;
 
 void init_cache();
 
