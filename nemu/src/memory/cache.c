@@ -26,7 +26,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache)
             {
                 if (pRead.blockAddr + 8 * len < 512)
                 {
-                    memcpy(&ret, &(cache[cache_row].data[pRead.blockAddr]), len);
+                    memcpy(&ret, &cache[cache_row].data[pRead.blockAddr], len);
                 }
                 else
                 {
