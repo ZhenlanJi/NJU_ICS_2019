@@ -21,20 +21,28 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache)
         if (cache[cache_row + i].mark == pRead.mark)
         {
             cache_row += i;
-            if(cache[cache_row].valid_bit)
+            if (cache[cache_row].valid_bit)
             {
-                if(pRead.blockAddr+8*len<512)
+                if (pRead.blockAddr + 8 * len < 512)
                 {
-                    memcpy(&ret,cache[cache_row].data[pRead.blockAddr],len);
+                    memcpy(&ret, cache[cache_row].data[pRead.blockAddr], len);
                 }
                 else
                 {
-                    uint32_t head,tail;
-                    memcpy(&head,cache[cache_row].data[pRead.blockAddr],len);
-                    tail=cache_read(paddr+64-pRead.,len,cache);
+                    uint32_t head, tail;
+                    memcpy(&tail, cache[cache_row].data[pRead.blockAddr], len);
+                    head = cache_read(paddr + 64 - pRead.blockAddr, len + 64 - pRead.blockAddr, cache) << (8 * (64 - pRead.blockAddr));
+                    ret = head | tail;
                 }
-                
+                return ret;
             }
         }
     }
+    //fail need to write
+    cache_row += rand() % 8;
+    cache[cache_row].valid_bit = true;
+    cache[cache_row].mark = pRead.mark;
+    memcpy(cache[cache_row].data, hw_mem + paddr - pRead.blockAddr, CACHE_BLOCK_SIZE);
+    memcpy(&ret, hw_mem + paddr, len);
+    return ret;
 }
