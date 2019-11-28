@@ -31,7 +31,7 @@ uint32_t cache_read(paddr_t paddr, size_t len, CacheLine *cache)
                 else
                 {
                     uint32_t head, tail;
-                    memcpy(&tail, &(cache[cache_row].data[pRead.blockAddr]), len);
+                    memcpy(&tail, &cache[cache_row].data[pRead.blockAddr], len);
                     head = cache_read(paddr + 64 - pRead.blockAddr, len + 64 - pRead.blockAddr, cache) << (8 * (64 - pRead.blockAddr));
                     ret = head | tail;
                 }
