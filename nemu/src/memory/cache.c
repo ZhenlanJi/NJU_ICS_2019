@@ -1,5 +1,6 @@
 #include "memory/memory.h"
 #include "memory/cache.h"
+#include<stdlib.h>
 
 CacheLine CACHE[CACHE_LINE_NUM]; //1024
 
