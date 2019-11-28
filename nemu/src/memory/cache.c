@@ -63,13 +63,13 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data, CacheLine *cache)
             {
                 if (pRead.blockAddr + 8 * len < 512)
                 {
-                    memcpy(&(cache[cache_row].data[pRead.blockAddr]), &data, len);
+                    memcpy(&cache[cache_row].data[pRead.blockAddr], &data, len);
                     memcpy(hw_mem + paddr, &data, len);
                 }
                 else
                 {
                     cache_write(paddr, 64 - pRead.blockAddr, data, cache);
-                    cache_write(paddr + 64 - pRead.blockAddr, len + 64 - pRead.blockAddr, data >> (8 * (64 - pRead.blockAddr)), cache);
+                    cache_write(paddr + 64 - pRead.blockAddr, len - 64 + pRead.blockAddr, data >> (8 * (64 - pRead.blockAddr)), cache);
                     memcpy(hw_mem + paddr, &data, len);
                 }
                 break;
