@@ -23,6 +23,6 @@ void load_sreg(uint8_t sreg)
 	SegDesc *obj_GDT = (SegDesc *)(base_GDT + cpu.segReg[sreg].index * sizeof(SegDesc));
 	assert(obj_GDT->granularity == 0 && obj_GDT->present == 1);
 
-	cpu.segReg[sreg].base = obj_GDT->base_15_0 + (obj_GDT->base_23_16 << 16) + (obj_GDT->base_32_24 << 24);
+	cpu.segReg[sreg].base = obj_GDT->base_15_0 + (obj_GDT->base_23_16 << 16) + (obj_GDT->base_31_24 << 24);
 	cpu.segReg[sreg].limit = obj_GDT->limit_15_0 + (obj_GDT->limit_19_16 << 16);
 }
