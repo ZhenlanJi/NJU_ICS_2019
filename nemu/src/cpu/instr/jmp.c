@@ -60,6 +60,6 @@ make_instr_func(jmp_far_imm)
     rel.addr = eip + 1;
     operand_read(&rel);
 
-    int offset = sign_ext(rel.value, data_size);
+    int offset = sign_ext(rel.val, data_size);
     cpu.eip = offset;
 }
