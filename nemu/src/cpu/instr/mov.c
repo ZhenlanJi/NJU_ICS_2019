@@ -19,7 +19,6 @@ make_instr_impl_2op(mov, a, o, b)
 make_instr_impl_2op(mov, a, o, v)
 make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
-make_instr_impl_2op(mov, rm, s, w)
 
 make_instr_func(mov_zrm82r_v)
 {
@@ -105,3 +104,4 @@ make_instr_func(mov_r2c_l)
     operand_write(&opr_dest);
     return len;
 }
+
