@@ -3,16 +3,55 @@
 
 #include "nemu.h"
 
+typedef struct GDTR
+{
+	uint32_t limit : 16;
+	uint32_t base : 32;
+} GDTR;
+
+typedef union {
+	struct
+	{
+		uint32_t pe : 1;
+		uint32_t mp : 1;
+		uint32_t em : 1;
+		uint32_t ts : 1;
+		uint32_t et : 1;
+		uint32_t reserve : 26;
+		uint32_t pg : 1;
+	};
+	uint32_t val;
+} CR0;
+
+typedef struct{
+		//the 16_bit visible part, such as the selector
+		union {
+			uint16_t val;
+			struct {
+				uint32_t rpl :2;
+				uint32_t ti  :1;
+				uint32_t index :13;
+			};
+		};
+		//the visible part, like cache_part for GDT_i
+		union {
+			struct {
+				uint32_t base;   //GDT_base
+				uint32_t limit;  //GDT_limit
+				uint32_t type :5;
+				uint32_t privilege_level :2; //DPL
+				uint32_t soft_use :1;
+			};
+			uint32_t val[3];
+		};
+	} SegReg;
 // define the structure of registers
 typedef struct
 {
 	// general purpose registers
-	union
-	{
-		union
-		{
-			union
-			{
+	union {
+		union {
+			union {
 				uint32_t _32;
 				uint16_t _16;
 				uint8_t _8[2];
