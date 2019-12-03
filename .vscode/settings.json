@@ -17,6 +17,7 @@
         "leave.h": "c",
         "not.h": "c",
         "imul.h": "c",
-        "cmps.h": "c"
+        "cmps.h": "c",
+        "std.h": "c"
     }
 }
