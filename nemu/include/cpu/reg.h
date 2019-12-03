@@ -42,7 +42,7 @@ typedef struct{
 				uint32_t privilege_level :2; //DPL
 				uint32_t soft_use :1;
 			};
-			uint32_t val[3];
+			uint32_t val_invisible[3];
 		};
 	} SegReg;
 // define the structure of registers
