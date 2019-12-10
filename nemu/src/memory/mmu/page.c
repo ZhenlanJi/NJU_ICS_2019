@@ -9,8 +9,14 @@ paddr_t page_translate(laddr_t laddr)
 	// assert(0);
 
 	laddrStruct tempLaddr;
-	tempLaddr.val=laddr;
-	
+	tempLaddr.val = laddr;
+	paddr_t table_addr = (cpu.cr3.pdbr << 12) + tempLaddr.dir * sizeof(PDE);
+
+	PDE pde;
+	pde.val = paddr_read(table_addr, 4);
+	assert(pde.present == 1);
+
+	paddr_t pte_addr=(pde.page_frame<<12)+table_addr
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
 	;
