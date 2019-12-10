@@ -19,6 +19,7 @@ uint32_t loader()
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph, *eph;
 
+	uint32_t p_vaddr = 0x0;
 #ifdef HAS_DEVICE_IDE
 	uint8_t buf[4096];
 	ide_read(buf, ELF_OFFSET_IN_DISK, 4096);
@@ -27,6 +28,8 @@ uint32_t loader()
 #else
 	elf = (void *)0x0;
 	Log("ELF loading from ram disk.");
+
+	memcpy((void *)(p_vaddr), (void *)ph->p_offset, ph->p_filesz);
 #endif
 
 	/* Load each program segment */
