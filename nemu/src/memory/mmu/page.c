@@ -8,7 +8,8 @@ paddr_t page_translate(laddr_t laddr)
 	// printf("\nPlease implement page_translate()\n");
 	// assert(0);
 
-	laddrStru tempLaddr;
+	laddrStruct tempLaddr;
+	tempLaddr.val=laddr;
 	
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
