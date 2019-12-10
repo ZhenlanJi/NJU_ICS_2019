@@ -16,7 +16,13 @@ paddr_t page_translate(laddr_t laddr)
 	pde.val = paddr_read(table_addr, 4);
 	assert(pde.present == 1);
 
-	paddr_t pte_addr=(pde.page_frame<<12)+table_addr
+	paddr_t pte_addr = (pde.page_frame << 12) + tempLaddr.page * sizeof(PTE);
+
+	PTE pte;
+	pte.val = paddr_read(pte_addr, 4);
+	assert(pte.present == 1);
+
+	return (pte.page_frame << 12) + tempLaddr.offset;
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
 	;
