@@ -41,7 +41,7 @@ typedef union laddrStruct
 		uint32_t dir:10;
 	};
 	uint32_t val;
-}laddrStru;
+}laddrStruct;
 
 
 
