@@ -24,49 +24,50 @@ typedef union {
 } CR0;
 
 // cr3
-typedef union CR3{
+typedef union CR3 {
 	struct
 	{
-		uint32_t reserved:12;
-		uint32_t pdbr:20;
+		uint32_t reserved : 12;
+		uint32_t pdbr : 20;
 	};
 	uint32_t val;
-}CR3;
+} CR3;
 
-typedef union laddrStruct
+typedef union laddrStruct {
+	struct
+	{
+		uint32_t offset : 12;
+		uint32_t page : 10;
+		uint32_t dir : 10;
+	};
+	uint32_t val;
+} laddrStruct;
+
+typedef struct
 {
-	struct{
-		uint32_t offset:12;
-		uint32_t page:10;
-		uint32_t dir:10;
+	//the 16_bit visible part, such as the selector
+	union {
+		uint16_t val;
+		struct
+		{
+			uint32_t rpl : 2;
+			uint32_t ti : 1;
+			uint32_t index : 13;
+		};
 	};
-	uint32_t val;
-}laddrStruct;
-
-
-
-typedef struct{
-		//the 16_bit visible part, such as the selector
-		union {
-			uint16_t val;
-			struct {
-				uint32_t rpl :2;
-				uint32_t ti  :1;
-				uint32_t index :13;
-			};
+	//the visible part, like cache_part for GDT_i
+	union {
+		struct
+		{
+			uint32_t base;  //GDT_base
+			uint32_t limit; //GDT_limit
+			uint32_t type : 5;
+			uint32_t privilege_level : 2; //DPL
+			uint32_t soft_use : 1;
 		};
-		//the visible part, like cache_part for GDT_i
-		union {
-			struct {
-				uint32_t base;   //GDT_base
-				uint32_t limit;  //GDT_limit
-				uint32_t type :5;
-				uint32_t privilege_level :2; //DPL
-				uint32_t soft_use :1;
-			};
-			uint32_t val_invisible[3];
-		};
-	} SegReg;
+		uint32_t val_invisible[3];
+	};
+} SegReg;
 // define the structure of registers
 typedef struct
 {
