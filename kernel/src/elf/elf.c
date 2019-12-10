@@ -29,7 +29,7 @@ uint32_t loader()
 	elf = (void *)0x0;
 	Log("ELF loading from ram disk.");
 
-	memcpy((void *)(p_vaddr), (void *)ph->p_offset, ph->p_filesz);
+	//memcpy((void *)(p_vaddr), (void *)ph->p_offset, ph->p_filesz);
 #endif
 
 	/* Load each program segment */
