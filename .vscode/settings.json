@@ -18,6 +18,7 @@
         "not.h": "c",
         "imul.h": "c",
         "cmps.h": "c",
-        "std.h": "c"
+        "std.h": "c",
+        "int.h": "c"
     }
 }
