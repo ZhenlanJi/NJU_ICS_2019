@@ -15,6 +15,7 @@ make_instr_func(lidt)
     base.type = OPR_IMM;
     base.data_size = 32;
     base.addr = limit.addr + 2;
+    operand_read(&base);
     cpu.idtr.base = base.val;
 
     return 6;
