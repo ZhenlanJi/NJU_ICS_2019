@@ -7,7 +7,7 @@ void raise_intr(uint8_t intr_no)
 #ifdef IA32_INTR
 	// printf("Please implement raise_intr()");
 	// assert(0);
-	printf("intr_no: %x", intr_no);
+	printf("intr_no: %x\n", intr_no);
 	cpu.esp -= 4;
 	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eflags.val);
 	cpu.esp -= 2;
@@ -28,6 +28,7 @@ void raise_intr(uint8_t intr_no)
 	
 	//cpu.cs.val = gatedesc.selector;
 	cpu.eip = (gatedesc.offset_31_16 << 16) + gatedesc.offset_15_0;
+	printf("eip: %x\n", cpu.eip);
 #endif
 }
 
