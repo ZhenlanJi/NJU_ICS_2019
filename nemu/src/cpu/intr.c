@@ -14,14 +14,17 @@ void raise_intr(uint8_t intr_no)
 	cpu.esp -= 4;
 	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eip);
 
-	uint32_t addr = (uint32_t)hw_mem + page_translate(segment_translate(cpu.idtr.base + 8 * intr_no, SREG_DS));
-	GateDesc* gatedesc = (void*)addr;
-	assert(gatedesc->present == 1 && gatedesc->system == 0 && gatedesc->pad0 == 0);
+	laddr_t l_addr = cpu.idtr.base + 8 * intr_no;
+	GateDesc gatedesc;
+	gatedesc.val[0] = laddr_read(l_addr + 4, 4);
+	gatedesc.val[1] = laddr_read(l_addr, 4);
 
-	if(gatedesc->type == 0xe)
+	assert(gatedesc.present == 1 && gatedesc.system == 0 && gatedesc.pad0 == 0);
+
+	if (gatedesc.type == 0xe)
 		cpu.eflags.IF = 0;
 
-	cpu.eip = (gatedesc->offset_31_16<<16)+ gatedesc->offset_15_0;
+	cpu.eip = (gatedesc.offset_31_16 << 16) + gatedesc.offset_15_0;
 #endif
 }
 
