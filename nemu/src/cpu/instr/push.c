@@ -22,3 +22,17 @@ make_instr_impl_1op(push, rm, v)
 make_instr_impl_1op(push, i, b)
 make_instr_impl_1op(push, i, v)
 
+make_instr_func(pusha)
+{
+    OPERAND rel;
+    rel.data_size = data_size;
+    rel.type = OPR_MEM;
+    rel.sreg = SREG_SS;
+
+    uint32_t offset = data_size / 8;
+    //in order eax,ecx,edx.....
+    for (int i = 0; i < 8; i++)
+    {
+        cpu.esp -= offset;
+    }
+}
