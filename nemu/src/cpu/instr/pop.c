@@ -28,12 +28,14 @@ make_instr_func(popa)
     rel.sreg = SREG_SS;
 
     uint32_t offset=data_size / 8;
+    uint32_t old_esp = cpu.esp;
     for(int i = 7; i >= 0; i--)
     {
-        rel.addr = cpu.esp;
+        rel.addr = old_esp;
         operand_read(&rel);
         cpu.gpr[i].val = rel.val;
-        cpu.esp += offset;
+        old_esp += offset;
     }
+    cpu.esp = old_esp;
     return 1;
 }
