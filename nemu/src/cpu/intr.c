@@ -15,7 +15,7 @@ void raise_intr(uint8_t intr_no)
 	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eip);
 
 	GateDesc gatedesc;
-	gatedesc = (uint32_t)hw_mem + page_translate(segment_translate(cpu.idtr.base + 8 * intr_no, SREG_DS));
+	gatedesc = (uint32_t)hw_mem + page_translate(segment_translate(cpu.idtr.base + 8 * (uint32_t)intr_no, SREG_DS));
 	assert(gatedesc.present == 1 && gatedesc.system == 0 && gatedesc.pad0 == 0);
 
 	if(gatedesc.type == 0xe)
