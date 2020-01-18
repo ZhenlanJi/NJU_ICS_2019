@@ -31,10 +31,11 @@ make_instr_func(pusha)
     rel.sreg = SREG_SS;
 
     uint32_t offset = data_size / 8;
+    assert(offset==4 || offset== 2 || offset == 1);
     //in order eax,ecx,edx.....
     for (int i = 0; i < 8; i++)
     {
-        cpu.esp -= offset;
+        cpu.esp = cpu.esp-offset;
         rel.addr = cpu.esp;
         rel.val = cpu.gpr[i].val;
         operand_write(&rel);
