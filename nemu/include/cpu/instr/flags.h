@@ -4,6 +4,7 @@
 make_instr_func(cld);
 make_instr_func(clc);
 make_instr_func(cli);
+make_instr_func(sti);
 make_instr_func(sahf);
 make_instr_func(bt_r2rm_v);
 
