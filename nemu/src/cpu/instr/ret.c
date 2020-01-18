@@ -31,3 +31,14 @@ make_instr_func(ret_near_imm16)
 
     return 0;
 }
+
+make_instr_func(iret)
+{
+    cpu.eip = vaddr_read(cpu.esp, SREG_SS, 4);
+    cpu.esp += 4;
+    cpu.cs.val = vaddr_read(cpu.esp, SREG_SS, 2);
+    cpu.esp += 2;
+    cpu.eflags.val = vaddr_read(cpu.esp, SREG_SS, 4);
+    cpu.esp += 4;
+    return 0;
+}
