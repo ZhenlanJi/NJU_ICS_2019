@@ -19,3 +19,21 @@ static void instr_execute_1op()
 
 make_instr_impl_1op(pop, r, v)
 make_instr_impl_1op(pop, rm, v)
+
+make_instr_func(popa)
+{
+    OPERAND rel;
+    rel.data_size = data_size;
+    rel.type = OPR_MEM;
+    rel.sreg = SREG_SS;
+
+    uint32_t offset=data_size / 8;
+    for(int i = 7; i >= 0; i--)
+    {
+        rel.addr = cpu.esp;
+        operand_read(&rel);
+        cpu.gpr[i].val = rel.val;
+        cpu.esp += offset;
+    }
+    return 1;
+}
