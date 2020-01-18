@@ -43,6 +43,8 @@ typedef union laddrStruct {
 	uint32_t val;
 } laddrStruct;
 
+
+
 typedef struct
 {
 	//the 16_bit visible part, such as the selector
