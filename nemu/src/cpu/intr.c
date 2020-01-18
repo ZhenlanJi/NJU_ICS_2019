@@ -5,8 +5,16 @@
 void raise_intr(uint8_t intr_no)
 {
 #ifdef IA32_INTR
-	printf("Please implement raise_intr()");
-	assert(0);
+	// printf("Please implement raise_intr()");
+	// assert(0);
+	cpu.esp -= 4;
+	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eflags.val);
+	cpu.esp -= 2;
+	vaddr_write(cpu.esp, SREG_SS, 2, cpu.cs.val);
+	cpu.esp -= 4;
+	vaddr_write(cpu.esp, SREG_SS, 4, cpu.eip);
+
+	
 #endif
 }
 
