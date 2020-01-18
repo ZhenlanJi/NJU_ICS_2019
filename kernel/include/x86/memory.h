@@ -108,7 +108,7 @@ typedef struct TrapFrame
 {
 	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax; // GPRs
 	int32_t irq;									 // #irq
-	//uint32_t error_code;							 // error code
+	uint32_t error_code;							 // error code
 	uint32_t eip, cs, eflags;						 // execution state saved by hardware
 } TrapFrame;
 
