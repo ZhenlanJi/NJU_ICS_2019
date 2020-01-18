@@ -43,7 +43,12 @@ typedef union laddrStruct {
 	uint32_t val;
 } laddrStruct;
 
-
+//pa-4-1
+typedef struct IDTR
+{
+	uint16_t limit;
+	uint32_t base;
+} IDTR;
 
 typedef struct
 {
