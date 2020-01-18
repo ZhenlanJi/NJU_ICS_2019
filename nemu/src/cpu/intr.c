@@ -26,7 +26,7 @@ void raise_intr(uint8_t intr_no)
 	if (gatedesc.type == 0xe)
 		cpu.eflags.IF = 0;
 	
-	cpu.cs.val = gatedesc.selector;
+	//cpu.cs.val = gatedesc.selector;
 	cpu.eip = (gatedesc.offset_31_16 << 16) + gatedesc.offset_15_0;
 #endif
 }
