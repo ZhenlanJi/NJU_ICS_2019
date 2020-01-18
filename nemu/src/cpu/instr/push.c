@@ -34,6 +34,9 @@ make_instr_func(pusha)
     for (int i = 0; i < 8; i++)
     {
         cpu.esp -= offset;
-        
+        rel.addr = cpu.esp;
+        rel.val = cpu.gpr[i].val;
+        operand_write(&rel);
     }
+    return 1;
 }
