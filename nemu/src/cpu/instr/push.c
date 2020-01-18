@@ -13,7 +13,8 @@ static void instr_execute_1op()
     temp_dest.sreg = SREG_SS;
     temp_dest.data_size = data_size;
     temp_dest.type = OPR_MEM;
-    temp_dest.val = sign_ext(opr_src.val, data_size);
+    opr_src.val = sign_ext(opr_src.val, data_size);
+    temp_dest.val = opr_src.val;
     operand_write(&temp_dest);
 }
 
