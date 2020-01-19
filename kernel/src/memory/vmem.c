@@ -22,7 +22,9 @@ void create_video_mapping()
 
 	PDE *pdir = (PDE *)va_to_pa(get_updir());
 	PTE *ptable = (PTE *)va_to_pa(vptable);
-	pdir[0].val = 
+	pdir[0].val = make_pde(ptable);
+
+	
 }
 
 void video_mapping_write_test()
