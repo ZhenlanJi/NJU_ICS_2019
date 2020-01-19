@@ -26,7 +26,11 @@ uint32_t paddr_read(paddr_t paddr, size_t len)
 #ifdef CACHE_ENABLED
 	ret = cache_read(paddr, len, CACHE);
 #else
-	ret = hw_mem_read(paddr, len);
+	int map_NO = is_mmio(paddr);
+	if (map_NO != -1)
+		ret = mmio_read(paddr, len, map_NO);
+	else
+		ret = hw_mem_read(paddr, len);
 #endif
 	return ret;
 }
@@ -36,24 +40,28 @@ void paddr_write(paddr_t paddr, size_t len, uint32_t data)
 #ifdef CACHE_ENABLED
 	cache_write(paddr, len, data, CACHE);
 #else
-	hw_mem_write(paddr, len, data);
+	int map_NO = is_mmio(paddr);
+	if (map_NO != -1)
+		mmio_write(paddr, len, data, map_NO);
+	else
+		hw_mem_write(paddr, len, data);
 #endif
 }
 
 uint32_t laddr_read(laddr_t laddr, size_t len)
 {
-	assert(len==1||len==2||len==4);
-	uint32_t paddr=laddr;
-	if(cpu.cr0.pg==1)
-		paddr=page_translate(laddr);
+	assert(len == 1 || len == 2 || len == 4);
+	uint32_t paddr = laddr;
+	if (cpu.cr0.pg == 1)
+		paddr = page_translate(laddr);
 	return paddr_read(paddr, len);
 }
 
 void laddr_write(laddr_t laddr, size_t len, uint32_t data)
 {
-	uint32_t paddr=laddr;
-	if(cpu.cr0.pg==1)
-		paddr=page_translate(laddr);
+	uint32_t paddr = laddr;
+	if (cpu.cr0.pg == 1)
+		paddr = page_translate(laddr);
 	paddr_write(paddr, len, data);
 }
 
@@ -63,12 +71,12 @@ uint32_t vaddr_read(vaddr_t vaddr, uint8_t sreg, size_t len)
 #ifndef IA32_SEG
 	return laddr_read(vaddr, len);
 #else
-	uint32_t laddr=vaddr;
-	if(cpu.cr0.pe==1)
+	uint32_t laddr = vaddr;
+	if (cpu.cr0.pe == 1)
 	{
-		laddr=segment_translate(vaddr,sreg);
+		laddr = segment_translate(vaddr, sreg);
 	}
-	return laddr_read(laddr,len);
+	return laddr_read(laddr, len);
 #endif
 }
 
@@ -78,12 +86,12 @@ void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data)
 #ifndef IA32_SEG
 	laddr_write(vaddr, len, data);
 #else
-	uint32_t laddr=vaddr;
-	if(cpu.cr0.pe==1)
+	uint32_t laddr = vaddr;
+	if (cpu.cr0.pe == 1)
 	{
-		laddr=segment_translate(vaddr,sreg);
+		laddr = segment_translate(vaddr, sreg);
 	}
-	return laddr_write(laddr,len,data);
+	return laddr_write(laddr, len, data);
 #endif
 }
 
@@ -91,7 +99,7 @@ void init_mem()
 {
 	// clear the memory on initiation
 	memset(hw_mem, 0, MEM_SIZE_B);
-	
+
 #ifdef CACHE_ENABLED
 	init_cache();
 #endif
