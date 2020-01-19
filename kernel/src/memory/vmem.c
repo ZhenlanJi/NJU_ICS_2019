@@ -21,7 +21,8 @@ void create_video_mapping()
 	//panic("please implement me");
 
 	PDE *pdir = (PDE *)va_to_pa(get_updir());
-	PTE *ptable = (PTE *)va_to_pa(kptable);
+	PTE *ptable = (PTE *)va_to_pa(vptable);
+	pdir[0].val = 
 }
 
 void video_mapping_write_test()
