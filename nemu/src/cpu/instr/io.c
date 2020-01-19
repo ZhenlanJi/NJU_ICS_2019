@@ -18,3 +18,9 @@ make_instr_func(out_b)
     pio_write((uint16_t)cpu.edx, 1, cpu.eax);
     return 1;
 }
+
+make_instr_func(out_v)
+{
+    pio_write((uint16_t)cpu.edx, data_size / 8, cpu.eax);
+    return 1;
+}
