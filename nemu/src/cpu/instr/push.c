@@ -4,11 +4,11 @@ static void instr_execute_1op()
 {
     uint32_t dest_size = data_size / 8;
     assert(dest_size == 1 || dest_size == 2 || dest_size == 4);
-    cpu.esp -= dest_size;
 
     operand_read(&opr_src);
 
     OPERAND temp_dest;
+    cpu.esp -= dest_size;
     temp_dest.addr = cpu.esp;
     temp_dest.sreg = SREG_SS;
     temp_dest.data_size = data_size;
