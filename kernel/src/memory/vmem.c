@@ -26,6 +26,7 @@ void create_video_mapping()
 	ptable += 0xa0;
 	for (int i = 0xa0; i <= 0xaf; i++)
 	{
+		//page_size--4096--<<12
 		ptable->val = make_pde(i << 12);
 		ptable++;
 	}
