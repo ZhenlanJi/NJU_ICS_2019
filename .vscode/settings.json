@@ -19,6 +19,7 @@
         "imul.h": "c",
         "cmps.h": "c",
         "std.h": "c",
-        "int.h": "c"
+        "int.h": "c",
+        "neg.h": "c"
     }
 }

@@ -51,6 +51,7 @@ extern uint8_t data_size;
 #include "cpu/instr/lidt.h"
 #include "cpu/instr/int.h"
 #include "cpu/instr/io.h"
+#include "cpu/instr/neg.h"
 
 /* TODO: add more instructions here */
 
